@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-from django.db import models
 import uuid
+
+from django.db import models
+
 
 class Projects(models.Model):
     projectId = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -14,5 +16,4 @@ class Projects(models.Model):
     # userId = models.
 
     class Meta:
-        app_label="jira2app"
-
+        app_label = "jira2app"
