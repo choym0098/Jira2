@@ -41,3 +41,17 @@ pip install --no-binary :all: psycopg2
 ```bash
 pip install pre-commit
 ```
+
+
+## Development
+
+### Migrations
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+### running server
+```bash
+python manage.py runserver
+```
