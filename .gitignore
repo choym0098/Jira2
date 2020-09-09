@@ -134,3 +134,5 @@ config.yaml
 
 .DS_Store
 tmp.py
+
+.vscode
