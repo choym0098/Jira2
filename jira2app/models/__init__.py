@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from .columns import Columns
-from .comments import Comments
-from .projects import Projects
-from .tickets import Tickets
+from jira2app.models.columns import Columns
+from jira2app.models.comments import Comments
+from jira2app.models.projects import Projects
+from jira2app.models.tickets import Tickets
 
 __all__ = ["Columns", "Projects", "Comments", "Tickets"]

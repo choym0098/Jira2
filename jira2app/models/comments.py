@@ -4,7 +4,7 @@ import uuid
 from django.contrib.auth.models import User
 from django.db import models
 
-from jira2app.models import Tickets
+from jira2app.models.tickets import Tickets
 
 
 class Comments(models.Model):
