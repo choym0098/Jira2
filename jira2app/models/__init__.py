@@ -2,5 +2,6 @@
 from .columns import Columns
 from .comments import Comments
 from .projects import Projects
+from .tickets import Tickets
 
-__all__ = ["Columns", "Projects", "Comments"]
+__all__ = ["Columns", "Projects", "Comments", "Tickets"]
