@@ -37,6 +37,10 @@ Then, install `psycopg2` package to work with `PostgresSQL`
 pip install --no-binary :all: psycopg2
 ```
 
+```bash
+pip install --upgrade Pillow 
+```
+
 ### 4. install code formatter
 ```bash
 pip install pre-commit
