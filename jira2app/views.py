@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
-from django.contrib.auth import login as user_login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib import auth
+from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 
 
-def sign_up(request):
+def signup(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            user_login(request, user)
-        return redirect("jira2app:sign_up")
-    else:
-        form = UserCreationForm()
-        return render(request, "jira2app/form.html", {"form": form})
+        if request.POST["password"] == request.POST["password_verification"]:
+            user = User.objects.create_user(
+                username=request.POST["username"],
+                email=request.POST["email"],
+                first_name=request.POST["first_name"],
+                last_name=request.POST["last_name"],
+                password=request.POST["password"],
+            )
+            auth.login(request, user)
+            return redirect("home")
+    return render(request, "jira2app/signup.html")
