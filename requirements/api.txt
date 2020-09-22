@@ -1,3 +1,6 @@
 -r core.txt
 
 Django==3.1.1
+django-filter==2.3.0
+djangorestframework==3.11.1
+markdown==3.2.2

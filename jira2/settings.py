@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "jira2app",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
