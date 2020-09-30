@@ -22,6 +22,7 @@ Open the app and initialize the database. Then, log in as `postgres` and run the
 ```sql
 create database jira2;
 create user root with password 'password';
+ALTER USER root CREATEDB;
 alter role root set client_encoding to 'utf-8';
 alter role root set timezone to 'Asia/Seoul';
 grant all privileges on database jira2 to root;
