@@ -28,7 +28,7 @@ alter role root set timezone to 'Asia/Seoul';
 grant all privileges on database jira2 to root;
 ```
 
-### 3. install Django 
+### 3. install Django
 install Django
 ```bash
 pip install Django
@@ -39,7 +39,7 @@ pip install --no-binary :all: psycopg2
 ```
 
 ```bash
-pip install --upgrade Pillow 
+pip install --upgrade Pillow
 ```
 
 ### 4. install code formatter
