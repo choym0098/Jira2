@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth import get_user_model
+from jira2app.models import Column, Project
 from rest_framework import serializers
-
-from app.jira2app.models import Column, Project
 
 
 class UserSerializer(serializers.Serializer):
