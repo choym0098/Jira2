@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 
 def user_directory_path(instance, filename):
@@ -44,3 +45,22 @@ class Column(models.Model):
     )
     column_name = models.CharField(max_length=32, blank=True)
     next_column = models.ManyToManyField("self", blank=True, editable=True)
+
+
+class Ticket(TimeStampMixin):
+    """Ticket to be used in column model"""
+    column = models.ForeignKey(
+        Column, on_delete=models.CASCADE, related_name='tickets'
+    )
+    ticket_title = models.CharField(max_length=32, null=False)
+    ticket_description = models.TextField()
+    notifyees = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        blank=True,
+        related_name='tickets'
+    )
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=False,
+    )
