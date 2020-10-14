@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth import get_user_model
-from jira2app.models import Column, Project, Ticket
+from jira2app.models import Column, Project, Ticket, Comment
 from rest_framework import serializers
 
 
@@ -12,15 +12,33 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ("id", "username")
 
 
-class TicketSerializer(serializers.ModelSerializer):
-    """Serializer for ticket objects"""
+class CommentSerializer(serializers.ModelSerializer):
+    """Serializer for comment objects"""
+    user = UserSerializer(many=False)
+
+    class Meta:
+        model = Comment
+        fields = ("id", "created_at", "updated_at", "message", "user")
+
+
+class TicketDetailSerializer(serializers.ModelSerializer):
+    """Serializer detail ticket info to show when clicking tickets"""
     user = UserSerializer(many=False)
     notifyees = UserSerializer(many=True)
+    comments = CommentSerializer(many=True)
 
     class Meta:
         model = Ticket
         fields = ("id", "created_at", "updated_at", "ticket_title", "ticket_description",
-                  "user", "notifyees")
+                  "user", "notifyees", "comments")
+
+
+class TicketSerializer(serializers.ModelSerializer):
+    """Serialize simplified ticket info that are being used in project page"""
+
+    class Meta:
+        model = Ticket
+        fields = ("id", "created_at", "updated_at", "ticket_title", "ticket_description",)
 
 
 class ColumnSerializer(serializers.ModelSerializer):

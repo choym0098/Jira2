@@ -41,7 +41,7 @@ class Column(models.Model):
     """Column to be used in project model"""
 
     project = models.ForeignKey(
-        Project, on_delete=models.CASCADE, related_name="columns"
+        Project, on_delete=models.CASCADE, related_name="columns", null=False
     )
     column_name = models.CharField(max_length=32, blank=True)
     next_column = models.ManyToManyField("self", blank=True, editable=True)
@@ -57,10 +57,24 @@ class Ticket(TimeStampMixin):
     notifyees = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         blank=True,
-        related_name='tickets'
     )
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
+        related_name='tickets',
         null=False,
     )
+
+
+class Comment(TimeStampMixin):
+    """Comment to be used in ticket model"""
+    ticket = models.ForeignKey(
+        Ticket, on_delete=models.CASCADE, related_name='comments'
+    )
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        related_name='comments',
+        null=True
+    )
+    message = models.CharField(max_length=256, null=False)
