@@ -4,7 +4,7 @@ from jira2app.models import Column, Project
 from rest_framework import serializers
 
 
-class UserSerializer(serializers.Serializer):
+class UserSerializer(serializers.ModelSerializer):
     """Serializer for user objects"""
 
     class Meta:
@@ -12,7 +12,7 @@ class UserSerializer(serializers.Serializer):
         fields = ("id", "username")
 
 
-class ColumnSerializer(serializers.Serializer):
+class ColumnSerializer(serializers.ModelSerializer):
     """Serializer for column objects"""
 
     class Meta:
