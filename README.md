@@ -66,13 +66,26 @@ python manage.py runserver
 1. First install docker on your laptop or desktop.
 https://www.docker.com/?utm_source=google&utm_medium=cpc&utm_campaign=dockerhomepage&utm_content=namer&utm_term=dockerhomepage&utm_budget=growth&gclid=CjwKCAjw5p_8BRBUEiwAPpJO6-p4Z1j76uJmVZVqrb_DUYrGBtCsQa2UXdKMgTEZE-6zpft4XgLatBoCYTYQAvD_BwE
 
-2. To initialize, run
+2. Go to app/app/settings.py, and find DATABASES in settings.py. Once found, change it to this:
+```
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": os.environ.get("DB_HOST"),
+        "NAME": os.environ.get("DB_NAME"),
+        "USER": os.environ.get("DB_USER"),
+        "PASSWORD": os.environ.get("DB_PASS"),
+    }
+}
+```
+
+3. To initialize, run
 ```
 docker-compose build
 docker-compose run app sh -c "python manage.py makemigrations"
 ```
 
-3. To run the server, run
+4. To run the server, run
 ```
 docker-compose up
 ```
