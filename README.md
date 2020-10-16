@@ -60,3 +60,19 @@ python manage.py migrate
 ```bash
 python manage.py runserver
 ```
+
+
+# Running with Docker
+1. First install docker on your laptop or desktop.
+https://www.docker.com/?utm_source=google&utm_medium=cpc&utm_campaign=dockerhomepage&utm_content=namer&utm_term=dockerhomepage&utm_budget=growth&gclid=CjwKCAjw5p_8BRBUEiwAPpJO6-p4Z1j76uJmVZVqrb_DUYrGBtCsQa2UXdKMgTEZE-6zpft4XgLatBoCYTYQAvD_BwE
+
+2. To initialize, run
+```
+docker-compose build
+docker-compose run app sh -c "python manage.py makemigrations"
+```
+
+3. To run the server, run
+```
+docker-compose up
+```
