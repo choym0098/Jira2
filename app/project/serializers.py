@@ -77,3 +77,11 @@ class ProjectSerializer(serializers.ModelSerializer):
             "users",
             "columns",
         )
+
+    def create(self, validated_data):
+        print("validated_data : ", validated_data)
+        users = validated_data.pop('users')
+        project = Project.objects.create(**validated_data)
+        for user in users:
+            project.users.add(user)
+        return project
