@@ -36,6 +36,8 @@ class Project(TimeStampMixin):
         settings.AUTH_USER_MODEL, blank=True, related_name="projects"
     )
 
+    def __str__(self):
+        return self.project_name
 
 class Column(models.Model):
     """Column to be used in project model"""
@@ -45,6 +47,9 @@ class Column(models.Model):
     )
     column_name = models.CharField(max_length=32, blank=True)
     next_column = models.ManyToManyField("self", blank=True, editable=True)
+
+    def __str__(self):
+        return self.column_name
 
 
 class Ticket(TimeStampMixin):
@@ -65,11 +70,17 @@ class Ticket(TimeStampMixin):
         null=False,
     )
 
+    def __str__(self):
+        return self.ticket_title
+
 
 class Label(models.Model):
     """Label to be used in comment model"""
     label_name = models.CharField(max_length=20, null=False, blank=False)
     label_color = models.CharField(max_length=20, null=False, blank=False)
+
+    def __str__(self):
+        return self.label_name
 
 
 class Comment(TimeStampMixin):
@@ -88,3 +99,7 @@ class Comment(TimeStampMixin):
         Label,
         blank=True
     )
+
+    def __str__(self):
+        return self.message
+    
