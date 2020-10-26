@@ -66,6 +66,12 @@ class Ticket(TimeStampMixin):
     )
 
 
+class Label(models.Model):
+    """Label to be used in comment model"""
+    label_name = models.CharField(max_length=20, null=False, blank=False)
+    label_color = models.CharField(max_length=20, null=False, blank=False)
+
+
 class Comment(TimeStampMixin):
     """Comment to be used in ticket model"""
     ticket = models.ForeignKey(
@@ -78,3 +84,7 @@ class Comment(TimeStampMixin):
         null=True
     )
     message = models.CharField(max_length=256, null=False)
+    labels = models.ManyToManyField(
+        Label,
+        blank=True
+    )

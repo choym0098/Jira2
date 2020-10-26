@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth import get_user_model
-from jira2app.models import Column, Project, Ticket, Comment
+from jira2app.models import Column, Project, Ticket, Comment, Label
 from rest_framework import serializers
 
 
@@ -12,13 +12,22 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ("id", "username")
 
 
+class LabelSerializer(serializers.ModelSerializer):
+    """Serializer for label objects"""
+
+    class Meta:
+        model = Label
+        fields = ("id", "label_name", "label_color")
+
+
 class CommentSerializer(serializers.ModelSerializer):
     """Serializer for comment objects"""
     user = UserSerializer(many=False)
+    labels = LabelSerializer(many=True)
 
     class Meta:
         model = Comment
-        fields = ("id", "created_at", "updated_at", "message", "user")
+        fields = ("id", "created_at", "updated_at", "message", "user", "labels")
 
 
 class TicketDetailSerializer(serializers.ModelSerializer):
